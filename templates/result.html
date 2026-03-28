@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendation Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f9fa; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+        h1, h2 { text-align: center; }
+        .charts { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 20px; }
+        .chart { width: 45%; margin: 10px 0; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Recommended Company</h1>
+        <h2>{{ company }}</h2>
+        <p style="text-align:center;">Predicted Overall Satisfaction: <strong>{{ overall_rating }}</strong></p>
+        <p style="text-align:center;">Priority: {{ priority }} | Entry Level: {{ entry_level }}</p>
+        
+        <div class="charts">
+            <div class="chart">
+                <h3>Factor Importance</h3>
+                <img src="{{ url_for('static', filename=regression_chart) }}" alt="Regression Importance" width="100%">
+            </div>
+            <div class="chart">
+                <h3>Pros Sentiment</h3>
+                <img src="{{ url_for('static', filename=pros_chart) }}" alt="Pros Sentiment" width="100%">
+            </div>
+            <div class="chart">
+                <h3>Cons Sentiment</h3>
+                <img src="{{ url_for('static', filename=cons_chart) }}" alt="Cons Sentiment" width="100%">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
